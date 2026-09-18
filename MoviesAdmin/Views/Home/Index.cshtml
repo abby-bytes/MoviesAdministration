@@ -1,8 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    string name = "Abbyyyyyy";
+    string hello = "Hello Razor! ";
+
+    int count = 10;
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Movies Administration</h1>
     <p>Meow </p>
 </div>
+
+@{
+    hello += "Message from the code block.";
+}
+
+<div class="text-center">
+    @name @hello
+</div>
+
+<div class="text+center";>
+    @if (count > 10)
+    {
+        <p>Count is greater than 10.</p>
+    }
+    else
+    {
+        <p>Count is equal to or less than 10.</p>
+    }
+
+</div>
+ 
