@@ -6,6 +6,13 @@ namespace MoviesAdmin.Controllers
 {
     public class HomeController : Controller
     {
+        // Constructor
+        public class Homecontroller()
+        {
+
+        }
+
+        // Action Methods below
         public IActionResult Index()
         {
             return View();
