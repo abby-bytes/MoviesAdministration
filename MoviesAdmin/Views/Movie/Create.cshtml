@@ -1,60 +1,60 @@
 @model MoviesAdmin.Models.Movie
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Movie";
 }
 
-<h1>Create</h1>
-
-<h4>Movie</h4>
+<h1 class="custom-header">Create Movie</h1>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label fw-bold"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Synopsis" class="control-label"></label>
-                <input asp-for="Synopsis" class="form-control" />
+            <!-- Laarge box for Synopsis -->
+            <div class="form-group mb-3">
+                <label asp-for="Synopsis" class="control-label fw-bold"></label>
+                <textarea asp-for="Synopsis" class="form-control" rows="5"></textarea>
                 <span asp-validation-for="Synopsis" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Genre" class="control-label"></label>
-                <input asp-for="Genre" class="form-control" />
-                <span asp-validation-for="Genre" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Genre" class="control-label fw-bold"></label>
+                    <input asp-for="Genre" class="form-control" />
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Rating" class="control-label fw-bold"></label>
+                    <input asp-for="Rating" class="form-control" />
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Runtime" class="control-label fw-bold"></label>
+                    <input asp-for="Runtime" class="form-control" />
+                    <span asp-validation-for="Runtime" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Director" class="control-label fw-bold"></label>
+                    <input asp-for="Director" class="form-control" />
+                    <span asp-validation-for="Director" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Runtime" class="control-label"></label>
-                <input asp-for="Runtime" class="form-control" />
-                <span asp-validation-for="Runtime" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Director" class="control-label"></label>
-                <input asp-for="Director" class="form-control" />
-                <span asp-validation-for="Director" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

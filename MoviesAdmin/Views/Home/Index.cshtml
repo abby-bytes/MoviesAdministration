@@ -1,11 +1,40 @@
-﻿@{
+﻿@model IEnumerable<MoviesAdmin.Models.Movie>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<divnb class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</divnb>
+<div class="text-center mb-5">
+    <h1 class="custom-header display-4">Welcome to Popcorn Picks</h1>
+    <p class="lead"><b>Explore the featured movie collection below!</b></p>
+</div>
 
+<div class="movie-list">
+@foreach (var item in Model) {
+    <div class="movie-card mb-4 p-4 border rounded shadow-sm bg-white">
+        <!-- Title -->
+        <h2 class="movie-title mb-2">
+            @Html.DisplayFor(model => item.Title)
+        </h2>
 
+        <!-- Synopsis & Rating -->
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <p class="movie-synopsis mb-0 me-3">
+                @Html.DisplayFor(model => item.Synopsis)
+            </p>
+            <span class="badge bg-secondary fs-6">
+                @Html.DisplayFor(model => item.Rating)
+            </span>
+        </div>
 
+        <hr class="my-3" />
+
+        <!-- Details Line -->
+        <div class="movie-details text-muted">
+            <strong>Runtime:</strong> @Html.DisplayFor(model => item.Runtime) mins &nbsp;|&nbsp;
+            <strong>Director:</strong> @Html.DisplayFor(model => item.Director) &nbsp;|&nbsp;
+            <strong>Genre:</strong> @Html.DisplayFor(model => item.Genre)
+        </div>
+    </div>
+}
+</div>
