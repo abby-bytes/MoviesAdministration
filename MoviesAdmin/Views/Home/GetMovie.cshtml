@@ -1,0 +1,31 @@
+﻿@model MoviesAdmin.Models.Movie
+   
+@{
+	// Trail object is called as "model"
+
+	ViewData["Title"] = "Movie - " + Model.Title;
+
+}
+
+<h1>
+	@Model.Title
+</h1>
+
+<p>
+	@Model.Synopsis
+</p>
+
+<p>@Model.Genre
+</p>
+
+@{
+	double Runtime = (double)Model.Runtime / 1000;
+}
+
+<p>
+	@Model.Director
+</p>
+
+<p>
+	Runtime: @Model.Runtime hr <br />
+</p>

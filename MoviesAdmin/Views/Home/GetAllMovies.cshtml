@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MoviesAdmin.Models.Movie>
+
+<div>
+    <h2>All Movies</h2>
+
+    @foreach (var movie in Model)
+    {
+        <div>
+            <h3>@movie.Title</h3>
+            <p><strong>Genre:</strong> @movie.Genre</p>
+            <p><strong>Runtime:</strong> @movie.Runtime hours</p>
+            <p><strong>Director:</strong> @movie.Director</p>
+            <p><strong>Synopsis:</strong> @movie.Synopsis</p>
+        </div>
+    }
+</div>
