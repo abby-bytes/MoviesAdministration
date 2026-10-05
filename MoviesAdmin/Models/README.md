@@ -1,7 +1,7 @@
-﻿# **Rotten Tomatoes** - Movie Reviews Platform
+﻿# **Popcorn Picks** - Movie Reviews Platform
 
 ## Project Overview
-Rotten Tomatoes is an interactive web platform made for movie discovery, rating, and community reviews analysis! 
+Popcorn Picks is an interactive web platform made for movie discovery, rating, and community reviews analysis! 
 It's built using **ASP.NET Core**, **C#** and **Razor Markup**. the platform allows users to explore trending movies, inspect detailed score distributions, write personal critiques, and discover community recommendations.
 
 ### Key Objectives
@@ -19,7 +19,7 @@ It's built using **ASP.NET Core**, **C#** and **Razor Markup**. the platform all
 >  eamlessly browse a comprehensive list of movies and media entries.
 
 * View each movies by categories or reviews
-> iew individual media pages organized by categories, genres, or user reviews.
+> View individual media pages organized by categories, genres, or user reviews.
 
 * Submit user reviews
 > Allow authenticated users to submit detailed critiques and numerical ratings.
