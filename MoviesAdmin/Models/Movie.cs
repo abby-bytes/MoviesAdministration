@@ -30,7 +30,12 @@ namespace MoviesAdmin.Models
         [StringLength(80)]
         public string Director { get; set; } = string.Empty;
 
-      
+        public string? ImageUrl { get; set; } // Added the '?' so it is not strictly required by default
+
+        [Required]
+        [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
+        public DateTime ReleaseDate { get; set; }
 
     }
 }

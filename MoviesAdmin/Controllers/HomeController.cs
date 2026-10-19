@@ -9,13 +9,11 @@ namespace MoviesAdmin.Controllers
     {
         private readonly MoviesAdminContext _context;
 
-        // Putting database context for view
         public HomeController(MoviesAdminContext context)
         {
             _context = context;
         }
 
-        // Fetch movies and send them to the Home view
         public async Task<IActionResult> Index()
         {
             var movies = await _context.Movie.ToListAsync();

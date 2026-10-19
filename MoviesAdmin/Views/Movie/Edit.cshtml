@@ -6,12 +6,12 @@
 
 <h1 class="custom-header">Edit Movie</h1>
 <hr />
-
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Edit" asp-route-id="@Model.Id" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageUrl" />
 
             <div class="form-group mb-3">
                 <label asp-for="Title" class="control-label fw-bold"></label>
@@ -19,7 +19,6 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
-            <!-- large box for Synopsis -->
             <div class="form-group mb-3">
                 <label asp-for="Synopsis" class="control-label fw-bold"></label>
                 <textarea asp-for="Synopsis" class="form-control" rows="5"></textarea>
@@ -50,6 +49,26 @@
                     <input asp-for="Director" class="form-control" />
                     <span asp-validation-for="Director" class="text-danger"></span>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ReleaseDate" class="control-label fw-bold"></label>
+                    <input asp-for="ReleaseDate" type="date" class="form-control" />
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="control-label fw-bold">Update Poster Image (Optional)</label>
+                <input type="file" name="imageFile" class="form-control" />
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <div class="mt-2">
+                        <small class="text-muted">Current Poster:</small><br />
+                        <img src="@Model.ImageUrl" alt="Current Poster" class="img-thumbnail mt-1" style="width: 80px; height: 120px; object-fit: cover;" />
+                    </div>
+                }
             </div>
 
             <div class="form-group mt-4">

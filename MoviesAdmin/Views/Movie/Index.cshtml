@@ -7,44 +7,43 @@
 <h1 class="custom-header mb-3">Movies</h1>
 
 <p class="mb-4">
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New Movie</a>
 </p>
 
-<div class="movie-list">
-@foreach (var item in Model) {
-    <div class="movie-card mb-4 p-4 border rounded shadow-sm bg-white">
-        <!-- Bigger Title -->
-        <h2 class="movie-title mb-2">
-            @Html.DisplayFor(model => item.Title)
-        </h2>
+<div class="list-group list-group-flush">
+    @foreach (var item in Model)
+    {
+        <div class="py-3 border-bottom d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@item.ImageUrl" alt="Poster" class="me-3 rounded shadow-sm" style="width: 80px; height: 120px; object-fit: cover;" />
+                }
+                else
+                {
+                    <div class="bg-light border text-center d-flex align-items-center justify-content-center me-3 rounded text-muted small" style="width: 80px; height: 120px;">
+                        No Image
+                    </div>
+                }
 
-        <!-- Synopsis block with Rating in a box -->
-        <div class="d-flex justify-content-between align-items-start mb-2">
-            <p class="movie-synopsis mb-0 me-3">
-                @Html.DisplayFor(model => item.Synopsis)
-            </p>
-            <div class="border rounded px-3 py-1 text-nowrap ms-2 bg-light">
-                @Html.DisplayFor(model => item.Rating)
+                <div>
+                    <h4 class="mb-1">@item.Title</h4>
+                    <p class="text-muted mb-1 text-truncate" style="max-width: 500px;">
+                        @item.Synopsis
+                    </p>
+                    <p class="text-muted mb-0 small">
+                        <strong>Genre:</strong> @item.Genre &nbsp;|&nbsp;
+                        <strong>Rating:</strong> @item.Rating &nbsp;|&nbsp;
+                        <strong>Runtime:</strong> @item.Runtime mins
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-nowrap">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
             </div>
         </div>
-
-        <hr class="my-3" />
-
-        <!-- Runtime, Director, Genre -->
-        <div class="movie-details mb-2">
-            <strong>Runtime:</strong> @Html.DisplayFor(model => item.Runtime) mins &nbsp;|&nbsp;
-            <strong>Director:</strong> @Html.DisplayFor(model => item.Director) &nbsp;|&nbsp;
-            <strong>Genre:</strong> @Html.DisplayFor(model => item.Genre)
-        </div>
-
-        <hr class="my-3" />
-
-        <!-- Action Links -->
-        <div class="movie-actions">
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </div>
-    </div>
-}
+    }
 </div>

@@ -6,11 +6,10 @@
 
 <h1 class="custom-header">Create Movie</h1>
 <hr />
-
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group mb-3">
                 <label asp-for="Title" class="control-label fw-bold"></label>
@@ -18,7 +17,6 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
-            <!-- Laarge box for Synopsis -->
             <div class="form-group mb-3">
                 <label asp-for="Synopsis" class="control-label fw-bold"></label>
                 <textarea asp-for="Synopsis" class="form-control" rows="5"></textarea>
@@ -49,6 +47,19 @@
                     <input asp-for="Director" class="form-control" />
                     <span asp-validation-for="Director" class="text-danger"></span>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ReleaseDate" class="control-label fw-bold"></label>
+                    <input asp-for="ReleaseDate" type="date" class="form-control" />
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label class="control-label fw-bold">Movie Poster Image</label>
+                <input type="file" name="imageFile" class="form-control" />
             </div>
 
             <div class="form-group mt-4">

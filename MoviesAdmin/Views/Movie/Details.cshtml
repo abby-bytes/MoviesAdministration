@@ -4,56 +4,61 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="custom-header">Movie Details</h1>
 
 <div>
-    <h4>Movie</h4>
+    <h4>@Model.Title</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Synopsis)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Synopsis)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Runtime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Runtime)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Director)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="@Model.Title Poster" class="img-fluid rounded shadow" style="max-height: 450px; object-fit: cover;" />
+            }
+            else
+            {
+                <div class="bg-light border text-center d-flex align-items-center justify-content-center text-muted rounded" style="height: 400px;">
+                    No Image Available
+                </div>
+            }
+        </div>
+
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">Title</dt>
+                <dd class="col-sm-9">@Model.Title</dd>
+
+                <dt class="col-sm-3 fw-bold">Synopsis</dt>
+                <dd class="col-sm-9">@Model.Synopsis</dd>
+
+                <dt class="col-sm-3 fw-bold">Genre</dt>
+                <dd class="col-sm-9">@Model.Genre</dd>
+
+                <dt class="col-sm-3 fw-bold">Rating</dt>
+                <dd class="col-sm-9">@Model.Rating</dd>
+
+                <dt class="col-sm-3 fw-bold">Runtime</dt>
+                <dd class="col-sm-9">@Model.Runtime mins</dd>
+
+                <dt class="col-sm-3 fw-bold">Director</dt>
+                <dd class="col-sm-9">@Model.Director</dd>
+
+                <dt class="col-sm-3 fw-bold">Release Date</dt>
+                <dd class="col-sm-9">@Model.ReleaseDate.ToShortDateString()</dd>
+            </dl>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-secondary">Edit</a> |
+
+    @if (ViewData["FromHome"] != null && (bool)ViewData["FromHome"] == true)
+    {
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
+    }
+    else
+    {
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    }
 </div>
