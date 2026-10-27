@@ -10,5 +10,8 @@ namespace MoviesAdmin.Models
         [Required]
         [StringLength(100)]
         public string GenreName { get; set; } = string.Empty;
+
+        // Navigation property
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

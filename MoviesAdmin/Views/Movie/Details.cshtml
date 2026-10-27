@@ -5,7 +5,6 @@
 }
 
 <h1 class="custom-header">Movie Details</h1>
-
 <div>
     <h4>@Model.Title</h4>
     <hr />
@@ -32,7 +31,7 @@
                 <dd class="col-sm-9">@Model.Synopsis</dd>
 
                 <dt class="col-sm-3 fw-bold">Genre</dt>
-                <dd class="col-sm-9">@Model.Genre</dd>
+                <dd class="col-sm-9">@Model.Genre?.GenreName</dd>
 
                 <dt class="col-sm-3 fw-bold">Rating</dt>
                 <dd class="col-sm-9">@Model.Rating</dd>
@@ -41,7 +40,7 @@
                 <dd class="col-sm-9">@Model.Runtime mins</dd>
 
                 <dt class="col-sm-3 fw-bold">Director</dt>
-                <dd class="col-sm-9">@Model.Director</dd>
+                <dd class="col-sm-9">@Model.Director?.FullName</dd>
 
                 <dt class="col-sm-3 fw-bold">Release Date</dt>
                 <dd class="col-sm-9">@Model.ReleaseDate.ToShortDateString()</dd>

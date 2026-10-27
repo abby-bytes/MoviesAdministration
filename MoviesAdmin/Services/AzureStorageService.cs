@@ -1,6 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Azure.Storage.Sas; // Make sure this namespace is included
+using Azure.Storage.Sas; 
 
 namespace MoviesAdmin.Services
 {
@@ -38,7 +38,6 @@ namespace MoviesAdmin.Services
                 await blobClient.UploadAsync(stream, options);
             }
 
-            // Automatically generate a local SAS URI so the browser loads it with proper authentication
             if (blobClient.CanGenerateSasUri)
             {
                 var sasBuilder = new BlobSasBuilder()
@@ -46,12 +45,12 @@ namespace MoviesAdmin.Services
                     BlobContainerName = containerName,
                     BlobName = filename,
                     Resource = "b",
-                    ExpiresOn = DateTimeOffset.UtcNow.AddYears(1) // Long-lasting token for local development
+                    ExpiresOn = DateTimeOffset.UtcNow.AddYears(1) 
                 };
                 sasBuilder.SetPermissions(BlobSasPermissions.Read);
 
                 Uri sasUri = blobClient.GenerateSasUri(sasBuilder);
-                return sasUri.ToString(); // Returns the URL with the cryptographic signature attached
+                return sasUri.ToString();
             }
 
             return blobClient.Uri.ToString();

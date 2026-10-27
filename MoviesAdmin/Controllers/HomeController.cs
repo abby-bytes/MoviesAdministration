@@ -16,7 +16,11 @@ namespace MoviesAdmin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _context.Movie.ToListAsync();
+            var movies = await _context.Movie
+                .Include(m => m.Genre)     // Populate the genre navigation property
+                .Include(m => m.Director)  // Populate the director navigation property
+                .ToListAsync();
+
             return View(movies);
         }
 

@@ -2,6 +2,6 @@
 {
     public interface IAzureStorageService
     {
-        Task<string> UploadFileAsync(IFormFile file, string filename);
+        public Task<string> UploadFileAsync(IFormFile file, string filename);
     }
 }

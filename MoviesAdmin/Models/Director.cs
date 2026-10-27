@@ -13,5 +13,8 @@ namespace MoviesAdmin.Models
         [Required]
         [StringLength(500)]
         public string Bio { get; set; } = string.Empty;
+
+        // Navigation property back to movies directed by them
+        public ICollection<Movie>? Movies { get; set; }
     }
 }
