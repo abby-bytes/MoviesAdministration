@@ -21,6 +21,7 @@ public class MovieController : Controller
         var movies = await _context.Movie
             .Include(m => m.Genre)
             .Include(m => m.Director)
+            .Include(m => m.AudienceRating)
             .ToListAsync();
         return View(movies);
     }
@@ -33,6 +34,7 @@ public class MovieController : Controller
         var movie = await _context.Movie
             .Include(m => m.Genre)
             .Include(m => m.Director)
+            .Include(m => m.AudienceRating)
             .FirstOrDefaultAsync(m => m.Id == id);
 
         if (movie == null) return NotFound();
@@ -47,13 +49,14 @@ public class MovieController : Controller
     {
         ViewData["DirectorId"] = new SelectList(_context.Director, "Id", "FullName");
         ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "GenreName");
+        ViewData["AudienceRatingId"] = new SelectList(_context.AudienceRating, "Id", "Title");
         return View();
     }
 
     // POST: MOVIES/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,GenreId,Rating,Runtime,DirectorId,ImageUrl,ReleaseDate")] Movie movie, IFormFile? imageFile)
+    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,GenreId,AudienceRatingId,Runtime,DirectorId,ImageUrl,ReleaseDate")] Movie movie, IFormFile? imageFile)
     {
         if (imageFile != null && imageFile.Length > 0)
         {
@@ -70,6 +73,7 @@ public class MovieController : Controller
 
         ViewData["DirectorId"] = new SelectList(_context.Director, "Id", "FullName", movie.DirectorId);
         ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "GenreName", movie.GenreId);
+        ViewData["AudienceRatingId"] = new SelectList(_context.AudienceRating, "Id", "Title", movie.AudienceRatingId);
         return View(movie);
     }
 
@@ -89,13 +93,14 @@ public class MovieController : Controller
 
         ViewData["DirectorId"] = new SelectList(_context.Director, "Id", "FullName", movie.DirectorId);
         ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "GenreName", movie.GenreId);
+        ViewData["AudienceRatingId"] = new SelectList(_context.AudienceRating, "Id", "Title", movie.AudienceRatingId);
         return View(movie);
     }
 
     // POST: MOVIES/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Synopsis,GenreId,Rating,Runtime,DirectorId,ImageUrl,ReleaseDate")] Movie movie, IFormFile? imageFile)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Synopsis,GenreId,AudienceRatingId,Runtime,DirectorId,ImageUrl,ReleaseDate")] Movie movie, IFormFile? imageFile)
     {
         ModelState.Remove("ImageUrl");
 
@@ -111,7 +116,7 @@ public class MovieController : Controller
                 movieToUpdate.Title = movie.Title;
                 movieToUpdate.Synopsis = movie.Synopsis;
                 movieToUpdate.GenreId = movie.GenreId;
-                movieToUpdate.Rating = movie.Rating;
+                movieToUpdate.AudienceRatingId = movie.AudienceRatingId;
                 movieToUpdate.Runtime = movie.Runtime;
                 movieToUpdate.DirectorId = movie.DirectorId;
                 movieToUpdate.ReleaseDate = movie.ReleaseDate;
@@ -135,6 +140,7 @@ public class MovieController : Controller
 
         ViewData["DirectorId"] = new SelectList(_context.Director, "Id", "FullName", movie.DirectorId);
         ViewData["GenreId"] = new SelectList(_context.Genre, "Id", "GenreName", movie.GenreId);
+        ViewData["AudienceRatingId"] = new SelectList(_context.AudienceRating, "Id", "Title", movie.AudienceRatingId);
         return View(movie);
     }
 
@@ -149,6 +155,7 @@ public class MovieController : Controller
         var movie = await _context.Movie
             .Include(m => m.Genre)
             .Include(m => m.Director)
+            .Include(m => m.AudienceRating)
             .FirstOrDefaultAsync(m => m.Id == id);
 
         if (movie == null)

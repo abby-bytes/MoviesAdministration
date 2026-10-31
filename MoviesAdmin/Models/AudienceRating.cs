@@ -8,5 +8,8 @@ namespace MoviesAdmin.Models
 
         [Required]
         public string Title { get; set; } = string.Empty;
+
+        // Navigation property
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

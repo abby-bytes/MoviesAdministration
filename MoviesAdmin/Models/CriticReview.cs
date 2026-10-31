@@ -18,5 +18,10 @@ namespace MoviesAdmin.Models
 
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        // Foreign Key for Movie
+        [Display(Name = "Movie")]
+        public int MovieId { get; set; }
+        public Movie? Movie { get; set; }
     }
 }

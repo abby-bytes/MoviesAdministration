@@ -15,10 +15,6 @@ namespace MoviesAdmin.Models
         public string Synopsis { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(20)]
-        public string Rating { get; set; } = string.Empty;
-
-        [Required]
         public double Runtime { get; set; }
 
         public string? ImageUrl { get; set; }
@@ -33,11 +29,19 @@ namespace MoviesAdmin.Models
         // Foreign Key for Director
         [Display(Name = "Director")]
         public int DirectorId { get; set; }
-        public Director? Director { get; set; } // Navigation Property
+        public Director? Director { get; set; }
 
         // Foreign Key for Genre
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
-        public Genre? Genre { get; set; } // Navigation Property
+        public Genre? Genre { get; set; }
+
+        // Foreign Key for AudienceRating
+        [Display(Name = "Audience Rating")]
+        public int? AudienceRatingId { get; set; }
+        public AudienceRating? AudienceRating { get; set; }
+
+        // Navigation collection for reviews
+        public ICollection<CriticReview>? CriticReviews { get; set; }
     }
 }
